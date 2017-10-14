@@ -75,6 +75,13 @@ def jaccard_similarity(x, y):
     union_cardinality = len(set.union(*[set(x), set(y)]))
     return intersection_cardinality / float(union_cardinality)
 
+def jaccard_similarity2(x, y):
+    summin=0
+    summax=0
+    for i in range(len(x)):
+        summin+=min(x[i],y[i])
+        summax+=max(x[i],y[i])
+    return summin/summax
 
 
 def kMeans(X, K, maxIters=10, plot_progress=None):
@@ -97,19 +104,17 @@ def kMeans(X, K, maxIters=10, plot_progress=None):
         centroids = centroidesTemp
     return np.array(centroids), C
 
-def result(fdt):
+def result(fdt,k):
     print("Tiempo final: ", time.time() - timeini)
     listaFiles = list(fdt.keys())
-    cluster0 = []
-    cluster1 = []
+    cluster = [[] for _ in range(k)]
     for i in range(len(listaFiles)):
-        if finalList[i] == 0:
-            cluster0.append(listaFiles[i])
-        else:
-            cluster1.append(listaFiles[i])
+        for y in range(k):
+            if finalList[i] == y:
+                cluster[y].append(listaFiles[i])
 
-    print("Cluster 0: ", cluster0)
-    print("Cluster 1: ", cluster1)
+    for xy in range(k):
+        print 'Cluster ', xy, ': ', cluster[xy]
 
 if __name__ == '__main__':
     timeini = time.time()
@@ -122,4 +127,4 @@ if __name__ == '__main__':
     matrizJaccard = preJaccard(fdt)
 
     centroides, finalList = kMeans(matrizJaccard, k)
-    result(fdt)
+    result(fdt, k)

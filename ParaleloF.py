@@ -148,11 +148,21 @@ def show(X, C, centroids, keep = False):
     if keep :
         plt.ioff()
         plt.show()
-
-def jaccard_similarity(x, y):
+#'''
+def jaccard_similarity2(x, y):
     intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
     union_cardinality = len(set.union(*[set(x), set(y)]))
     return intersection_cardinality / float(union_cardinality)
+#'''
+
+def jaccard_similarity(x, y):
+    summin=0
+    summax=0
+    for i in range(len(x)):
+        summin+=min(x[i],y[i])
+        summax+=max(x[i],y[i])
+    return summin/summax
+
 def KMeans(X, K, maxIters, plot_progress=None):
     C = []
     centroids = []
@@ -203,27 +213,26 @@ def KMeans(X, K, maxIters, plot_progress=None):
             centroids = centroidesFinales
     return np.array(centroids), C, z
 
-def result(x):
+def result(x,k):
     if comm.rank == 0:
         print("Tiempo final: ", time.time() - timeini)
         listaFiles = list(x.keys())
-        cluster0 = []
-        cluster1 = []
+        cluster=[[]for _ in range(k)]
         for i in range(len(listaFiles)):
-            if z[i] == 0:
-                cluster0.append(listaFiles[i])
-            else:
-                cluster1.append(listaFiles[i])
+            for y in range(k):
+                if z[i] == y:
+                    cluster[y].append(listaFiles[i])
 
-        print("Cluster 0: ", cluster0)
-        print("Cluster 1: ", cluster1)
+
+        for xy in range(k):
+            print 'Cluster ', xy, ': ', cluster[xy]
         # show(recibMatrixC, finalList, centroides, True)
 
 
 if __name__ == '__main__':
     timeini = time.time()
     k = 2
-    maxIters = 10
+    maxIters = 5
     rootDir = sys.argv[1]
     #corte
     tFinal, v = getT(rootDir)
@@ -234,7 +243,7 @@ if __name__ == '__main__':
     recibMatrixC, x = preJaccard(recibFrecuencia)
     centroides, finalList, z = KMeans(recibMatrixC , k, maxIters)
 
-    result(x)
+    result(x, k)
 
 
 
