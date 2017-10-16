@@ -47,7 +47,7 @@ Para correr el programa serial, se debe ejecutar el sifuiente comando: python2.7
 
 Para el paralelo, el comando es: mpiexec -np ${CORES} python ParaleloF ./{Carpeta del dataset}/
 
-#Aportes Externos:
+# Aportes Externos:
 El algoritmo de Jaccard fue sacado de la siguiente pagina:
 http://dataconomy.com/2015/04/implementing-the-five-most-popular-similarity-measures-in-python/
 
