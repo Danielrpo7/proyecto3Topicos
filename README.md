@@ -45,7 +45,7 @@ El algoritmo se compone de los siguientes pasos:
 
 Para correr el programa serial, se debe ejecutar el sifuiente comando: python2.7 serial.py ./{Carpeta del dataset}/
 
-Para el paralelo, el comando es: mpiexec -np ${CORES} python ParaleloF ./{Carpeta del dataset}.py/
+Para el paralelo, el comando es: mpiexec -np ${CORES} python ParaleloF ./{Carpeta del dataset}/
 
 #Aportes Externos:
 El algoritmo de Jaccard fue sacado de la siguiente pagina:
