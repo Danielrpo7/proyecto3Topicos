@@ -4,6 +4,7 @@ Proyecto Tópocos telemática
 Autores:
 
 Pablo Quijano - pquijano@eafit.edu.co
+
 Daniel Restrepo -
 
 Introducción:
@@ -29,4 +30,9 @@ K-means es un método de agrupamiento, que tiene como objetivo la partición de 
 Ejecución programas:
 
 Para correr el programa serial, se debe ejecutar el sifuiente comando: <python2.7 serial.py ./(Carpeta del dataset)/
+
 Para el paralelo, el comando es: <mpiexec -np (número de nucleos) python2.7 paraleloF.py ./(Carpeta del dataset)/
+
+Bibliografía:
+
+
