@@ -148,20 +148,11 @@ def show(X, C, centroids, keep = False):
     if keep :
         plt.ioff()
         plt.show()
-#'''
-def jaccard_similarity2(x, y):
+
+def jaccard_similarity(x, y):
     intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
     union_cardinality = len(set.union(*[set(x), set(y)]))
     return intersection_cardinality / float(union_cardinality)
-#'''
-
-def jaccard_similarity(x, y):
-    summin=0
-    summax=0
-    for i in range(len(x)):
-        summin+=min(x[i],y[i])
-        summax+=max(x[i],y[i])
-    return summin/summax
 
 def KMeans(X, K, maxIters, plot_progress=None):
     C = []
@@ -226,6 +217,7 @@ def result(x,k):
 
         for xy in range(k):
             print 'Cluster ', xy, ': ', cluster[xy]
+            print '-----------------------'
         # show(recibMatrixC, finalList, centroides, True)
 
 

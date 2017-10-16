@@ -75,14 +75,6 @@ def jaccard_similarity(x, y):
     union_cardinality = len(set.union(*[set(x), set(y)]))
     return intersection_cardinality / float(union_cardinality)
 
-def jaccard_similarity2(x, y):
-    summin=0
-    summax=0
-    for i in range(len(x)):
-        summin+=min(x[i],y[i])
-        summax+=max(x[i],y[i])
-    return summin/summax
-
 
 def kMeans(X, K, maxIters=10, plot_progress=None):
     centroids = X[np.random.choice(np.arange(len(X)), K), :]
